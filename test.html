@@ -1,87 +1,241 @@
-
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Comparison of Microsoft Playwright and Selenium</title>
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+    <meta name="description" content="QA Visionary and Transformation Leader - Resume">
+    <title>Resume - QA Transformation Leader</title>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Open Sans', sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            padding: 20px;
+        }
+        /* Sidebar */
+        .sidebar {
+            width: 300px;
+            background-color: #2c3e50;
+            color: #fff;
+            padding: 20px;
+            position: relative;
+        }
+        .sidebar img {
+            width: 150px;
+            border-radius: 50%;
+            margin-bottom: 20px;
+        }
+        .sidebar h2 {
+            font-size: 24px;
+            font-weight: 600;
+        }
+        .sidebar p {
+            font-size: 14px;
+        }
+        .skills, .languages, .education {
+            margin-top: 30px;
+        }
+        .skills ul, .languages ul {
+            list-style: none;
+            padding-left: 0;
+        }
+        .skills ul li, .languages ul li {
+            padding: 10px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+        }
+        /* Main Content */
+        .main {
+            width: 60%;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.1);
+        }
+        .main h1 {
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+        .main h2 {
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 20px;
+            color: #3498db;
+        }
+        .summary, .experience {
+            margin-bottom: 40px;
+        }
+        .summary p, .experience p {
+            font-size: 16px;
+            line-height: 1.6;
+            color: #333;
+        }
+        .experience ul {
+            list-style-type: none;
+        }
+        .experience ul li {
+            margin-bottom: 20px;
+        }
+        .contact-form {
+            margin-top: 40px;
+        }
+        .contact-form input, .contact-form textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        .contact-form button {
+            padding: 10px 20px;
+            background-color: #3498db;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: 0.3s ease;
+        }
+        .contact-form button:hover {
+            background-color: #2980b9;
+        }
+        /* Animations */
+        .animate-header {
+            animation: fadeInDown 2s ease-in-out;
+        }
+        .animate-section {
+            animation: fadeInUp 2s ease-in-out;
+        }
+        @keyframes fadeInDown {
+            0% {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        @keyframes fadeInUp {
+            0% {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .programming-languages {
+            background-color: #f4f4f9;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+        .project-section {
+            padding: 20px;
+            margin-bottom: 20px;
+            background-color: #ecf0f1;
+            border-radius: 8px;
+            box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.1);
+        }
+    </style>
 </head>
+
 <body>
-    <div class="container mt-5">
-        <h1>Comparison of Microsoft Playwright and Selenium: Auto-Waiting Functionalities and Overall Effectiveness</h1>
-
-        <section>
-            <h2>Introduction</h2>
-            <p>In the realm of automated testing, choosing the right framework can significantly impact the efficiency and reliability of your tests. This comparison focuses on Microsoft Playwright and Selenium, particularly their auto-waiting functionalities and overall effectiveness in various testing environments.</p>
-        </section>
-
-        <section>
-            <h2>Auto-Waiting Mechanisms</h2>
-
-            <div>
-                <h3>Playwright</h3>
-                <p>Playwright performs a range of actionability checks on elements before executing actions. It auto-waits for these checks to pass, ensuring that the element is:</p>
+    <div class="container">
+        <div class="sidebar">
+            <img src="https://via.placeholder.com/150" alt="Profile Picture">
+            <h2>Veeresh Bikkaneti</h2>
+            <p>QA Visionary and Transformation Leader</p>
+            <div class="skills">
+                <h3><i class="fas fa-tools"></i> Skills</h3>
                 <ul>
-                    <li>Visible</li>
-                    <li>Stable (not animating)</li>
-                    <li>Receives events (not obscured)</li>
-                    <li>Enabled</li>
-                </ul>
-                <p>If these conditions are not met within the specified timeout, the action fails with a <code>TimeoutError</code><sup>1</sup>. This built-in auto-waiting mechanism reduces flakiness and enhances test reliability.</p>
-            </div>
-
-            <div>
-                <h3>Selenium</h3>
-                <p>Selenium offers implicit and explicit waits:</p>
-                <ul>
-                    <li><strong>Implicit Wait:</strong> Sets a global wait time for the entire session. It waits for a specified time for elements to appear before throwing an exception<sup>2</sup>.</li>
-                    <li><strong>Explicit Wait:</strong> Waits for a specific condition to be met before proceeding. This is more flexible and can be tailored to individual elements<sup>3</sup>.</li>
+                    <li><i class="fas fa-check"></i> Selenium Webdriver</li>
+                    <li><i class="fas fa-check"></i> Microsoft Playwright</li>
+                    <li><i class="fas fa-check"></i> xUnit, NUnit, TestNG</li>
+                    <li><i class="fas fa-check"></i> C# & Java</li>
+                    <li><i class="fas fa-check"></i> Azure DevOps & Jenkins</li>
                 </ul>
             </div>
-        </section>
-
-        <section>
-            <h2>Handling Elements Not Immediately Available</h2>
-
-            <div>
-                <h3>Playwright</h3>
-                <p>Playwright's auto-waiting ensures that actions are only performed when elements are ready. This includes waiting for elements to become visible, stable, and interactable<sup>1</sup>. This reduces the need for manual waits and increases test reliability.</p>
+            <div class="languages">
+                <h3><i class="fas fa-code"></i> Programming Languages</h3>
+                <ul>
+                    <li><i class="fab fa-java"></i> Java</li>
+                    <li><i class="fab fa-cuttlefish"></i> C#</li>
+                    <li><i class="fab fa-python"></i> Python</li>
+                </ul>
             </div>
-
-            <div>
-                <h3>Selenium</h3>
-                <p>Selenium's explicit waits are used to handle elements that are not immediately available. By using conditions like <code>visibilityOfElementLocated</code> or <code>elementToBeClickable</code>, Selenium ensures that actions are performed only when elements are ready<sup>3</sup>. However, this requires more manual intervention compared to Playwright's built-in checks.</p>
+            <div class="education">
+                <h3><i class="fas fa-graduation-cap"></i> Education</h3>
+                <p>MSc Computer Science, Wilmington University</p>
+                <p>MBA, Calorx Teacher’s University</p>
             </div>
-        </section>
+        </div>
 
-        <section>
-            <h2>Impact on Test Reliability and Execution Speed</h2>
-
-            <div>
-                <h3>Playwright</h3>
-                <p>Playwright's auto-waiting mechanism significantly reduces test flakiness by ensuring that actions are only performed when elements are ready. This leads to more reliable tests and can reduce the need for manual waits, potentially speeding up test execution<sup>1</sup>.</p>
+        <div class="main">
+            <h1 class="animate-header">Veeresh Bikkaneti</h1>
+            <h2>QA Transformation Leader</h2>
+            <div class="summary animate-section">
+                <h3>Summary</h3>
+                <p>With over 15 years of experience, I have led successful QA transformations and delivered large-scale automation solutions in Agile environments. Strong expertise in Selenium, Playwright, BDD frameworks, and CI/CD pipeline integrations.</p>
             </div>
-
-            <div>
-                <h3>Selenium</h3>
-                <p>While Selenium's explicit waits can improve test reliability, they require more manual setup and can lead to longer test execution times if not used efficiently<sup>3</sup>. Implicit waits can also slow down tests if set too high.</p>
+            <div class="experience animate-section">
+                <h3>Projects & Experience</h3>
+                <div class="project-section">
+                    <h4><i class="fas fa-project-diagram"></i> Global Medical Response (GMR)</h4>
+                    <p>Led QA Automation for healthcare services, deploying scalable solutions with Microsoft Playwright and xUnit in Azure DevOps pipelines.</p>
+                </div>
+                <div class="project-section">
+                    <h4><i class="fas fa-project-diagram"></i> Utah State Board of Education</h4>
+                    <p>Designed and implemented test automation for the Statewide Student Identification (SSID) System.</p>
+                </div>
+                <div class="project-section">
+                    <h4><i class="fas fa-project-diagram"></i> Access2Care</h4>
+                    <p>Automated the Online Ordering System using Selenium and C# to optimize user flows and performance tests.</p>
+                </div>
             </div>
-        </section>
-
-        <section>
-            <h2>Syntax and Functionality Differences</h2>
-
-            <div>
-                <h3>Playwright</h3>
-                <p>Playwright's syntax is modern and concise. For example, to click a button, you can use:</p>
-                <pre><code>await page.click('button');</code></pre>
+            <!-- Contact Form -->
+            <div class="contact-form">
+                <h3>Contact Me</h3>
+                <form id="contact-form">
+                    <input type="text" name="name" placeholder="Your Name" required>
+                    <input type="email" name="email" placeholder="Your Email" required>
+                    <textarea name="message" placeholder="Your Message" required></textarea>
+                    <button type="submit">Submit</button>
+                </form>
             </div>
-        </section>
+        </div>
     </div>
 
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script>
+        const form = document.getElementById('contact-form');
+
+        form.addEventListener('submit', function (e) {
+            e.preventDefault();
+            const formData = new FormData(form);
+
+            fetch('https://script.google.com/macros/s/YOUR_GOOGLE_SCRIPT_ID/exec', {
+                method: 'POST',
+                body: formData,
+            }).then(response => response.json())
+            .then(data => {
+                console.log('Success:', data);
+                alert('Message sent successfully!');
+            })
+            .catch((error) => {
+                console.error('Error:', error);
+                alert('There was a problem sending the message.');
+            });
+        });
+    </script>
+
 </body>
+
 </html>
