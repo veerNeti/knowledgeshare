@@ -205,10 +205,19 @@
             <div class="contact-form">
                 <h3>Contact Me</h3>
                 <form id="contact-form">
-                    <input type="text" name="name" placeholder="Your Name" required>
-                    <input type="email" name="email" placeholder="Your Email" required>
-                    <textarea name="message" placeholder="Your Message" required></textarea>
-                    <button type="submit">Submit</button>
+                    <label for="name">Name:</label>
+                    <input type="text" id="name" placeholder="John Doe" required>
+            
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" placeholder="example@domain.com" required>
+            
+                    <label for="phone">Phone:</label>
+                    <input type="text" id="phone" placeholder="(123) 456-7890" required pattern="[0-9]{10}">
+            
+                    <label for="message">Message:</label>
+                    <textarea id="message" placeholder="Your message here..." required></textarea>
+            
+                    <button type="submit">Send Message</button>
                 </form>
             </div>
         </div>
