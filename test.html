@@ -215,25 +215,42 @@
     </div>
 
     <script>
-        const form = document.getElementById('contact-form');
+       document.getElementById('contact-form').addEventListener('submit', function (e) {
+    e.preventDefault();
 
-        form.addEventListener('submit', function (e) {
-            e.preventDefault();
-            const formData = new FormData(form);
+    // Extract form data
+    const name = document.getElementById('name').value;
+    const email = document.getElementById('email').value;
+    const phone = document.getElementById('phone').value;
+    const message = document.getElementById('message').value;
 
-            fetch('https://script.google.com/macros/s/YOUR_GOOGLE_SCRIPT_ID/exec', {
-                method: 'POST',
-                body: formData,
-            }).then(response => response.json())
-            .then(data => {
-                console.log('Success:', data);
-                alert('Message sent successfully!');
-            })
-            .catch((error) => {
-                console.error('Error:', error);
-                alert('There was a problem sending the message.');
-            });
-        });
+    // Data to send
+    const formData = {
+        name: name,
+        email: email,
+        phone: phone,
+        message: message
+    };
+
+    // Post form data to Google Apps Script Web App
+    fetch('https://script.google.com/macros/s/AKfycbwARsaXYVdNWy_KnlgXfyLVBwTYVdhLEMrLc9ubFJwd3YJnrbSzVURFqcXf_qPnLYrO0Q/exec', {
+        method: 'POST',
+        body: JSON.stringify(formData),
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.status === 'success') {
+            alert('Message sent successfully!');
+        } else {
+            alert('Failed to send the message.');
+        }
+    })
+    .catch(error => console.error('Error:', error));
+});
+
     </script>
 
 </body>
